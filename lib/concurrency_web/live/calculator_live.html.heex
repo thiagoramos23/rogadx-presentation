@@ -1,0 +1,14 @@
+<%= form_for :calculation, "#", [phx_submit: "save"], fn f -> %>
+
+  <%= text_input f, :number %>
+
+  <%= submit "Calculate" %>
+<% end %>
+
+<br>
+
+<%= for result <- @results do %>
+  <div>
+    Factorial of <%= result.number %>: <%= result.result %>
+  </div>
+<% end %> 

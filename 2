@@ -1,0 +1,32 @@
+defmodule ConcurrencyWeb.CalculatorLive do
+  use ConcurrencyWeb, :live_view
+
+  alias Concurrency.CalculatorService
+
+  def mount(_params, _session, socket) do
+    {:ok,
+     socket
+     |> assign(:results, [])}
+  end
+
+  def handle_event("save", %{"calculation" => %{"number" => number}}, socket) do
+    {:ok, pid} = CalculatorService.calculate_factorial(String.to_integer(number))
+    operation = %{pid: pid, number: number, result: :calculating}
+
+    IO.puts(inspect(pid))
+
+    {:noreply,
+     socket
+     |> assign(:results, [operation | socket.assigns.results])}
+  end
+
+  def handle_info({:factorial, pid, result}, socket) do
+    {:noreply,
+     socket
+     |> assign(:results, update_result(pid, result, socket.assigns.results))}
+  end
+
+  defp update_result(pid, new_result, results) do
+    results
+  end
+end
