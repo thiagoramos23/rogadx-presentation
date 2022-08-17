@@ -19,7 +19,8 @@ defmodule Concurrency.Application do
       # Start a worker by calling: Concurrency.Worker.start_link(arg)
       # {Concurrency.Worker, arg}
       {Task.Supervisor, name: Concurrency.CalculatorSupervisor},
-      {DynamicSupervisor, strategy: :one_for_one, name: Concurrency.DynamicJobSupervisor}
+      {DynamicSupervisor, strategy: :one_for_one, name: Concurrency.DynamicJobSupervisor},
+      {Concurrency.CountWordSupervisor, name: Concurrency.CountWordSupervisor}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

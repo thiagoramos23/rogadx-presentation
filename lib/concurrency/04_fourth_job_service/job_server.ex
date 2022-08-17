@@ -21,7 +21,7 @@ defmodule Concurrency.JobServer do
 
     case new_state.status do
       "error" ->
-        Process.send_after(self(), :retry, 10000)
+        Process.send_after(self(), :retry, 4000)
         {:noreply, new_state}
 
       "failed" ->
