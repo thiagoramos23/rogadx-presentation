@@ -20,7 +20,7 @@ defmodule Concurrency.MixProject do
   def application do
     [
       mod: {Concurrency.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :crypto, :runtime_tools]
     ]
   end
 

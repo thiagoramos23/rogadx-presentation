@@ -41,6 +41,7 @@ defmodule ConcurrencyWeb.Router do
       live_dashboard "/dashboard", metrics: ConcurrencyWeb.Telemetry
 
       live "/calculations", ConcurrencyWeb.CalculatorLive, :index
+      live "/send", ConcurrencyWeb.SendEmailLive, :index
     end
   end
 
